@@ -8,13 +8,72 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <style rel="stylesheet">
-      .b {
-        margin-bottom: 16px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+  <div class="o" id="overlay">
+    <div class="t container">
+      <div class="s">
+        <span class="icon" onclick="overlay('none')">
+          <i class="fas fa-times"></i>
+        </span>
+        <span class="icon" onclick="">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>
+      <div class="field">
+        <div class="control" onclick="">
+          <input class="input" id="inputNumber" type="number" placeholder="" onchange="" value="">
+        </div>
+      </div>
+      <div class="u">
+        <div class="columns" id="t-1">
+          <div class="column e" id="t-7" onclick="inputTarget(7)">
+            <p>7</p>
+          </div>
+          <div class="column e" id="t-8" onclick="inputTarget(8)">
+            <p>8</p>
+          </div>
+          <div class="column e" id="t-9" onclick="inputTarget(9)">
+            <p>9</p>
+          </div>
+        </div>
+        <div class="columns" id="t-2">
+          <div class="column e" id="t-4" onclick="inputTarget(4)">
+            <p>4</p>
+          </div>
+          <div class="column e" id="t-5" onclick="inputTarget(5)">
+            <p>5</p>
+          </div>
+          <div class="column e" id="t-6" onclick="inputTarget(6)">
+            <p>6</p>
+          </div>
+        </div>
+        <div class="columns" id="t-3">
+          <div class="column e" id="t-1" onclick="inputTarget(1)">
+            <p>1</p>
+          </div>
+          <div class="column e" id="t-2" onclick="inputTarget(2)">
+            <p>2</p>
+          </div>
+          <div class="column e" id="t-3" onclick="inputTarget(3)">
+            <p>3</p>
+          </div>
+        </div>
+        <div class="columns" id="t-4">
+          <div class="column e" id="t-0" onclick="inputTarget(0)">
+            <p>0</p>
+          </div>
+          <div class="column e" id="t-b" onclick="inputTarget(10)">
+            <p>&lt;</p>
+          </div>
+          <div class="column e" id="t-c" onclick="inputTarget(11)">
+            <p>c</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <section class="section">
     <div class="container">
       <h1 class="title">
@@ -26,6 +85,7 @@
       <div class="buttons" id="selecter"></div>
       <div id="inputs" class="b"></div>
       <div id="tag" class="field is-grouped is-grouped-multiline"></div>
+    </div>
   </section>
   <script src="index.js"></script>
   <script src="react.js" type="text/babel"></script>

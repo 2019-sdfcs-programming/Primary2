@@ -10,6 +10,8 @@ let support = [
     {display : 'Ep=mgh', id : ['Ep', 'm', 'h'], calc : 1},
 ]
 
+var inputTargetObj = ''
+
 var selecterInnerHTML = ''
 for (i = 0; i < support.length; i++) {
     selecterInnerHTML += '<a class="button" id="' + support[i]['id'] + '" onclick="displayPcalc(' + support[i]['calc'] + ', ' + i + ')">' + support[i]['display'] + '</a>'
@@ -19,7 +21,7 @@ document.getElementById('selecter').innerHTML = selecterInnerHTML
 function displayPcalc (type, index) {
     inputInnerHTML = ''
     for (i=0; i < support[index]['id'].length; i++) {
-        inputInnerHTML += '<div class="field"><div class="control"><input class="input" id="inp' + i + '" type="number" placeholder="' + support[index]['id'][i] + '" onchange="inputPcalc(' + type + ', ' + index + ')" value=""></input></div></div>'
+        inputInnerHTML += '<div class="field"><div class="control"><input class="input i" id="inp' + i + '" type="number" placeholder="' + support[index]['id'][i] + '" onchange="inputPcalc(' + type + ', ' + index + ')" value=""></input><span class="tag is-primary" onclick="showCalc(\'inp' + i + '\')">Calc</span></div></div>'
     }
     document.getElementById('inputs').innerHTML = inputInnerHTML
 }
@@ -91,7 +93,9 @@ function inputPcalc (type, index) {  //id, type
                 result.push(2*(v(0) - v(1)))
             }
         }
-        document.getElementById('tag').innerHTML = renderResultTag(result[0], result[1], 'success')
+        if (inputTargetObj !== '') {
+            document.getElementById('tag').innerHTML = renderResultTag(result[0], result[1], 'success')
+        }
     }
 }
 
@@ -99,6 +103,33 @@ function renderResultTag (first, second, color) {
     return '<div class="control"><div class="tags has-addons"><span class="tag">' + first + '</span><span class="tag is-' + color + '">' + second + '</span></div></div>'
 }
 
+function overlay (able) {
+    if (able === 'none') {
+        document.getElementById(inputTargetObj).value = ''
+    }
+    if (able === 'apply') {
+        document.getelementbyId('overlay').style.display = 'none'
+    } else {
+        document.getElementById('overlay').style.display = able
+    }
+}
+function inputTarget(target) {
+    if (target < 10) {
+        document.getElementById('inputNumber').value = document.getElementById('inputNumber').value + target
+    } else if (target === 10) {
+        str = document.getElementById('inputNumber').value
+        document.getElementById('inputNumber').value = str.substring(0, str.length - 1)
+    } else if (target === 11) {
+        document.getElementById('inputNumber').value = ''
+    }
+    document.getElementById(inputTargetObj).value = document.getElementById('inputNumber').value
+}
+
 function v (id) {
     return Number(document.getElementById('inp'+id).value)
+}
+
+function showCalc (target) {
+    overlay('block')
+    inputTargetObj = target
 }
